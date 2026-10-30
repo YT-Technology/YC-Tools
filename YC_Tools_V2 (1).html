@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>YC Tools — All in One | YT Technology</title>
+<style>
+:root{--bg:#000;--c:#00b4ff;--t:#e6f1ff;--m:#8aa0bd;--bd:rgba(0,180,255,.26)}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 8% 0,rgba(0,102,255,.3),transparent 45%),radial-gradient(circle at 95% 100%,rgba(0,180,255,.17),transparent 40%),#000 fixed;color:var(--t);font:15px/1.55 "Segoe UI",Tahoma,Arial,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--c);outline-offset:2px}
+.app{display:grid;grid-template-columns:272px 1fr;min-height:100vh}
+.sb{position:sticky;top:0;height:100vh;overflow:auto;padding:18px 14px;background:rgba(3,8,18,.78);backdrop-filter:blur(18px);border-inline-end:1px solid var(--bd);z-index:30}
+.br{display:flex;gap:10px;align-items:center;margin-bottom:16px}.br small{display:block;color:var(--m)}
+.lg{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-weight:800;color:#001018;background:linear-gradient(135deg,#00e1ff,#0066ff);box-shadow:0 0 22px rgba(0,180,255,.65)}
+input,select,textarea{background:rgba(0,0,0,.5);border:1px solid var(--bd);border-radius:10px;padding:9px 12px;width:100%}
+input[type=checkbox]{width:auto}input[type=range]{padding:0}
+textarea{resize:vertical;font-family:Consolas,"Courier New",monospace;font-size:13px}
+#q{margin-bottom:12px}
+.nv{all:unset;box-sizing:border-box;display:flex;gap:10px;align-items:center;width:100%;padding:9px 12px;border-radius:10px;cursor:pointer;color:var(--m);font:inherit;font-size:14px;transition:.2s}
+.nv span:nth-child(2){flex:1}.nv em{font-style:normal;font-size:12px;opacity:.7}
+.nv:hover,.nv.on{background:rgba(0,180,255,.13);color:var(--t)}.nv.on{outline:1px solid var(--bd)}
+.nv:focus-visible{outline:2px solid var(--c)}
+hr{border:0;border-top:1px solid var(--bd);margin:10px 0}
+main{padding:18px 28px;min-width:0}
+.tb{display:flex;align-items:center;gap:10px;margin-bottom:18px}.sp{flex:1}#mn{display:none}
+.gl{background:rgba(255,255,255,.045);border:1px solid var(--bd);border-radius:16px;backdrop-filter:blur(14px);box-shadow:inset 0 1px rgba(255,255,255,.06),0 10px 34px rgba(0,0,0,.5)}
+.hero{padding:30px;margin-bottom:22px}.hero h1{margin:0 0 6px;font-size:clamp(26px,4vw,40px)}.hero i{font-style:normal;color:var(--c);text-shadow:0 0 18px var(--c)}.hero p{margin:0;color:var(--m);max-width:62ch}
+h2{margin:6px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.cd{position:relative;transition:.25s}.cd:hover,.cd:focus-within{transform:translateY(-3px);border-color:var(--c);box-shadow:0 0 26px rgba(0,180,255,.35)}
+.cdb{all:unset;box-sizing:border-box;display:block;width:100%;padding:16px;cursor:pointer;border-radius:16px}.cdb:focus-visible{outline:2px solid var(--c)}
+.cdb b{display:block;margin:8px 0 2px}.cdb small{color:var(--m);display:block;padding-inline-end:20px}
+.ic{display:inline-grid;place-items:center;min-width:42px;height:34px;padding:0 8px;border-radius:9px;background:rgba(0,180,255,.14);color:var(--c);font:700 14px Consolas,monospace}
+.st{position:absolute;top:10px;inset-inline-end:10px;background:none;border:0;color:var(--c);font-size:20px;cursor:pointer;line-height:1}.st.big{position:static;font-size:26px}
+.em{padding:40px;text-align:center;color:var(--m)}.em span{font-size:40px;color:var(--c)}
+.wh{display:flex;gap:14px;align-items:center;margin-bottom:14px;flex-wrap:wrap}.wh h1{margin:0;font-size:24px}.wh p{margin:0}.mu{color:var(--m)}
+.wh>div{flex:1;min-width:180px}
+.ws{padding:20px}
+.f{display:block;margin-bottom:12px}.f>span{display:block;margin-bottom:4px;color:var(--m);font-size:13px}
+.k{display:inline-flex;gap:6px;align-items:center;margin-inline-end:14px;margin-bottom:8px}
+.r{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 14px;align-items:center}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.b{background:rgba(0,180,255,.1);border:1px solid var(--bd);border-radius:10px;padding:8px 16px;cursor:pointer;transition:.2s}
+.b:hover{background:rgba(0,180,255,.26);box-shadow:0 0 14px rgba(0,180,255,.45)}
+.b.p{background:linear-gradient(135deg,#00b4ff,#0066ff);border:0;font-weight:600}
+.out{margin:0;padding:14px;min-height:64px;background:rgba(0,0,0,.55);border:1px solid var(--bd);border-radius:12px;white-space:pre-wrap;word-break:break-word;font:13px/1.6 Consolas,"Courier New",monospace;unicode-bidi:plaintext;overflow:auto;max-height:60vh}
+.out:empty::before{content:"—";color:var(--m)}
+.err{margin-bottom:10px;padding:10px 14px;border-radius:10px;background:rgba(255,60,80,.14);border:1px solid rgba(255,60,80,.5);color:#ff9aa6}
+.nt{margin:0 0 12px;padding:10px 14px;border-radius:10px;background:rgba(0,180,255,.08);border-inline-start:3px solid var(--c);color:var(--m);font-size:13px}
+.md{font:15px/1.6 "Segoe UI",Tahoma,sans-serif;white-space:normal}.md pre{background:#000;padding:10px;border-radius:8px;overflow:auto;white-space:pre}.md code{background:rgba(0,180,255,.14);padding:1px 5px;border-radius:5px}.md pre code{background:none}.md a{color:var(--c)}.md blockquote{margin:6px 0;padding-inline-start:12px;border-inline-start:3px solid var(--c);color:var(--m)}
+.bar{height:8px;border-radius:8px;background:rgba(255,255,255,.1);margin-bottom:12px;overflow:hidden}.bar i{display:block;height:100%;width:0;transition:.3s;background:var(--c)}
+.ln{white-space:pre-wrap;padding:0 8px;border-radius:4px}.ln.a{background:rgba(0,220,120,.16);color:#7dffb4}.ln.d{background:rgba(255,60,80,.16);color:#ff9aa6}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;white-space:normal;background:none;border:0;padding:0}
+.stt{padding:14px;border:1px solid var(--bd);border-radius:12px;background:rgba(0,180,255,.07)}.stt b{display:block;font-size:26px;color:var(--c)}.stt span{color:var(--m);font-size:13px}
+table{width:100%;border-collapse:collapse;white-space:normal}td,th{padding:6px 10px;border-bottom:1px solid var(--bd);text-align:start}
+#ts{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);padding:10px 22px;border-radius:12px;background:#16a34a;color:#fff;font-weight:700;opacity:0;pointer-events:none;transition:.3s;z-index:99}
+#ts.on{opacity:1;transform:translate(-50%,0)}#ts.x{background:#dc2626}
+footer{margin-top:30px;color:var(--m);font-size:12px}
+@media(max-width:900px){.app{grid-template-columns:1fr}.sb{position:fixed;inset-block:0;inset-inline-start:0;width:272px;transform:translateX(-100%);transition:.3s}[dir=rtl] .sb{transform:translateX(100%)}.sb.on{transform:none!important}#mn{display:inline-block}main{padding:14px}.two{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<div class="app"><aside class="sb" id="sb">
+<div class="br"><div class="lg">YC</div><div><b>YC Tools</b><small>YT Technology</small></div></div>
+<input id="q" type="search" data-p="Search tools… ( / )|ابحث عن أداة… ( / )" autocomplete="off">
+<nav id="nav"></nav></aside>
+<main><header class="tb"><button id="mn" class="b" aria-label="Menu">☰</button><span class="sp"></span><button id="lang" class="b" aria-label="Language"></button></header>
+<section id="vw"></section>
+<footer data-l="All processing happens locally in your browser unless a tool states otherwise (IP, DNS and Domain tools call external services).|تتم المعالجة محلياً داخل المتصفح ما لم تذكر الأداة غير ذلك (أدوات IP وDNS والنطاق تستخدم خدمات خارجية)."></footer></main></div>
+<div id="ts" role="status" aria-live="polite"></div>
+<script>
+'use strict';
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+let lang='en',view='all',cur=null,q='',rec=[],res=[];
+try{lang=localStorage.getItem('yc_l')||((navigator.language||'').startsWith('ar')?'ar':'en');rec=JSON.parse(localStorage.getItem('yc_r')||'[]')}catch(e){}
+const save=()=>{try{localStorage.setItem('yc_l',lang);localStorage.setItem('yc_r',JSON.stringify(rec))}catch(e){}};
+const L=()=>lang=='ar'?1:0,l=s=>{let p=s.split('|');return p[L()]??p[0]},m=(a,b)=>L()?b:a;
+const esc=s=>String(s).replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
+const V=id=>$('#'+id).value,O=s=>{$('#e').hidden=1;$('#o').textContent=s},X=s=>{$('#e').hidden=0;$('#e').textContent=s;$('#o').textContent=''},H=h=>{$('#e').hidden=1;$('#o').innerHTML=h;apply($('#o'))};
+const CAT=['Developer Tools|أدوات المطورين','Cybersecurity|الأمن السيبراني','Network Tools|أدوات الشبكات','Text & Data|النصوص والبيانات'],CI=['</>','🛡','🌐','Aa'];
+function apply(r=document){$$('[data-l]',r).forEach(e=>e.textContent=l(e.dataset.l));$$('[data-p]',r).forEach(e=>{if(e.dataset.p){e.placeholder=l(e.dataset.p);if(e.id=='q')e.setAttribute('aria-label',l('Search tools|ابحث عن أداة'))}});$('#lang').textContent=lang=='ar'?'English':'العربية'}
+function toast(s,bad){let t=$('#ts');t.textContent=s;t.className='on'+(bad?' x':'');clearTimeout(toast.t);toast.t=setTimeout(()=>t.className='',1800)}
+/* ---------- shared helpers ---------- */
+const tx=(id,lb,r=7,p='')=>`<label class=f><span data-l="${lb}"></span><textarea id=${id} rows=${r} spellcheck=false dir=auto data-p="${p}"></textarea></label>`;
+const ip=(id,lb,v='',t='text')=>`<label class=f><span data-l="${lb}"></span><input id=${id} type=${t} value="${v}" dir=auto autocomplete=off></label>`;
+const bt=(a,lb,p)=>`<button class="b${p?' p':''}" data-a=${a} data-l="${lb}"></button>`;
+const ck=(id,lb,c=1)=>`<label class=k><input type=checkbox id=${id} ${c?'checked':''}><span data-l="${lb}"></span></label>`;
+const sl=(id,lb,o)=>`<label class=f><span data-l="${lb}"></span><select id=${id}>${o.map(x=>`<option value="${x[0]}" data-l="${x[1]}"></option>`).join('')}</select></label>`;
+const R=(...x)=>`<div class=r>${x.join('')}</div>`,nt=s=>`<p class=nt data-l="${s}"></p>`;
+const OUT=`<div id=e class=err role=alert hidden></div><pre id=o class=out dir=auto></pre>`,OUTD=`<div id=e class=err role=alert hidden></div><div id=o class=out></div>`;
+const u8=s=>new TextEncoder().encode(s),b64=s=>{let b='';u8(s).forEach(c=>b+=String.fromCharCode(c));return btoa(b)};
+const ub=s=>{s=s.replace(/\s/g,'').replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';return new TextDecoder('utf-8',{fatal:true}).decode(Uint8Array.from(atob(s),c=>c.charCodeAt(0)))};
+const jp=s=>{try{return JSON.parse(s)}catch(e){let p=/position (\d+)/.exec(e.message),x=e.message;if(p){let a=s.slice(0,+p[1]).split('\n');x+=m(` (line ${a.length}, column ${a[a.length-1].length+1})`,` (السطر ${a.length}، العمود ${a[a.length-1].length+1})`)}throw new Error(m('Invalid JSON: ','JSON غير صالح: ')+x)}};
+const rn=n=>{let a=new Uint32Array(1),k=4294967296-4294967296%n;do crypto.getRandomValues(a);while(a[0]>=k);return a[0]%n};
+const fj=async(u,o)=>{let c=new AbortController,t=setTimeout(()=>c.abort(),12e3);try{let r=await fetch(u,{...o,signal:c.signal});if(!r.ok)throw new Error('HTTP '+r.status);return await r.json()}catch(e){throw new Error(m('Network request failed: ','فشل الطلب: ')+(e.name=='AbortError'?m('timeout','انتهت المهلة'):e.message)+m(' (offline, or blocked by the browser/CORS)',' (لا اتصال، أو حجب من المتصفح/CORS)'))}finally{clearTimeout(t)}};
+/* formatters */
+function fm(s,v){let k=[],d=0,o=[];s=s.replace(/<(script|style|pre|textarea)\b[\s\S]*?<\/\1>/gi,x=>'\u0001'+(k.push(x)-1)+'\u0001');
+s.replace(/<!--[\s\S]*?-->|<!\[CDATA\[[\s\S]*?\]\]>|<[^>]+>|[^<]+/g,t=>{t=t.trim();if(!t)return;let c=/^<\//.test(t);if(c)d=Math.max(0,d-1);o.push('  '.repeat(d)+t);let n=/^<([\w:.-]+)/.exec(t);if(n&&!c&&!/\/>$/.test(t)&&!v.includes(n[1].toLowerCase()))d++});
+return o.join('\n').replace(/<([\w:.-]+)([^<>\n]*)>\n\s*([^<\n]+)\n\s*<\/\1>/g,'<$1$2>$3</$1>').replace(/\u0001(\d+)\u0001/g,(_,i)=>k[i])}
+const cm=s=>s.replace(/\/\*[\s\S]*?\*\//g,'').replace(/\s+/g,' ').replace(/\s*([{};,>])\s*/g,'$1').replace(/\s*:\s*/g,':').replace(/;}/g,'}').trim();
+function bc(s){s=cm(s);let o='',d=0,I=()=>'  '.repeat(d);for(let i=0;i<s.length;i++){let c=s[i];if(c=='{'){o+=' {\n'+'  '.repeat(++d)}else if(c=='}'){d=Math.max(0,d-1);o=o.trimEnd()+'\n'+I()+'}\n'+I()}else if(c==';')o+=';\n'+I();else if(c==':'&&d>0&&(n=>s[i+n]!='{')(s.slice(i).search(/[;{}]/)))o+=': ';else if(c==','&&d==0)o+=',\n';else o+=c}return o.replace(/[ \t]+$/gm,'').replace(/\n{2,}/g,'\n').trim()}
+function fjs(s){let o='',d=0,p=0,i=0,n=s.length,st=[],nl=()=>{o=o.trimEnd()+'\n'+'  '.repeat(d)};
+while(i<n){let c=s[i],c2=s[i+1],j;
+if(/\s/.test(c)){j=i;while(j<n&&/\s/.test(s[j]))j++;let w=s.slice(i,j);i=j;if(/\n/.test(w)&&!p)nl();else if(o&&!/[\s(\[]$/.test(o))o+=' ';continue}
+if(c=='"'||c=="'"||c=='`'){j=i+1;while(j<n&&s[j]!=c){if(s[j]=='\\')j++;j++}o+=s.slice(i,j+1);i=j+1;continue}
+if(c=='/'&&c2=='/'){j=s.indexOf('\n',i);if(j<0)j=n;o+=s.slice(i,j);i=j;continue}
+if(c=='/'&&c2=='*'){j=s.indexOf('*/',i+2);j=j<0?n:j+2;o+=s.slice(i,j);i=j;continue}
+if(c=='/'&&/^$|[(,=:\[!&|?{};+\-*%<>~^]$/.test(o.trimEnd().slice(-1))){let k=0;j=i+1;while(j<n&&(s[j]!='/'||k)){if(s[j]=='\\')j++;else if(s[j]=='[')k=1;else if(s[j]==']')k=0;j++}while(/[a-z]/i.test(s[j+1]||''))j++;o+=s.slice(i,j+1);i=j+1;continue}
+if(c=='(')p++;else if(c==')')p=Math.max(0,p-1);
+if(c=='{'){o=o.trimEnd()+' {';st.push(p);p=0;d++;nl();i++;continue}
+if(c=='}'){p=st.pop()||0;d=Math.max(0,d-1);nl();o+='}';i++;let r=s.slice(i).trimStart();if(/^(else|catch|finally|while\b)/.test(r))o+=' ';else if(!/^[,;)\].]/.test(r))nl();continue}
+if(c==';'&&!p){o+=';';nl();i++;continue}
+o+=c;i++}return o.trim()}
+function md(s){let cb=[];s=s.replace(/```[^\n]*\n([\s\S]*?)```/g,(_,c)=>{cb.push('<pre><code>'+esc(c)+'</code></pre>');return '\u0000'+(cb.length-1)+'\u0000'});
+let il=t=>esc(t).replace(/`([^`]+)`/g,'<code>$1</code>').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\*(.+?)\*/g,'<i>$1</i>').replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,(_,a,u)=>'<a href="'+(/^(https?:|mailto:)/i.test(u.replace(/&#38;/g,'&'))?u:'#')+'" target="_blank" rel="noopener noreferrer">'+a+'</a>');
+let o='',li=null,pa=[],fl=()=>{if(pa.length){o+='<p>'+pa.map(il).join('<br>')+'</p>';pa=[]}},cl=()=>{if(li){o+='</'+li+'>';li=null}};
+for(let ln of s.split('\n')){let x;
+if(x=/^\u0000(\d+)\u0000$/.exec(ln.trim())){fl();cl();o+=cb[x[1]]}
+else if(x=/^(#{1,6})\s+(.*)/.exec(ln)){fl();cl();o+=`<h${x[1].length}>${il(x[2])}</h${x[1].length}>`}
+else if(/^(-{3,}|\*{3,})$/.test(ln.trim())){fl();cl();o+='<hr>'}
+else if(x=/^\s*([-*+]|\d+\.)\s+(.*)/.exec(ln)){fl();let t=/\d/.test(x[1])?'ol':'ul';if(li!=t){cl();o+='<'+t+'>';li=t}o+='<li>'+il(x[2])+'</li>'}
+else if(x=/^>\s?(.*)/.exec(ln)){fl();cl();o+='<blockquote>'+il(x[1])+'</blockquote>'}
+else if(!ln.trim()){fl();cl()}else{cl();pa.push(ln)}}
+fl();cl();return o}
+function df(a,b){let n=a.length,mm=b.length,w=mm+1,t=new Uint32Array((n+1)*w);for(let i=n-1;i>=0;i--)for(let j=mm-1;j>=0;j--)t[i*w+j]=a[i]==b[j]?t[(i+1)*w+j+1]+1:Math.max(t[(i+1)*w+j],t[i*w+j+1]);let i=0,j=0,r=[];while(i<n&&j<mm){if(a[i]==b[j]){r.push([' ',a[i]]);i++;j++}else if(t[(i+1)*w+j]>=t[i*w+j+1])r.push(['-',a[i++]]);else r.push(['+',b[j++]])}while(i<n)r.push(['-',a[i++]]);while(j<mm)r.push(['+',b[j++]]);return r}
+function pc(s,dl){let r=[],w=[],f='',qt=0,qd=0;for(let i=0;i<s.length;i++){let c=s[i];if(qt){if(c=='"'){if(s[i+1]=='"'){f+='"';i++}else qt=0}else f+=c}else if(c=='"'&&!f){qt=1;qd=1}else if(c==dl){w.push(f);f='';qd=0}else if(c=='\n'||c=='\r'){if(c=='\r'&&s[i+1]=='\n')i++;w.push(f);r.push(w);w=[];f='';qd=0}else f+=c}if(qt)throw new Error(m('Unclosed quote in CSV','علامة اقتباس غير مغلقة في CSV'));if(f||w.length||qd){w.push(f);r.push(w)}return r.filter(x=>x.length>1||x[0]!='')}
+const ph=s=>s.split(/\r?\n/).map(x=>x.trim()).filter(x=>x&&!/^HTTP\//i.test(x)).map(x=>{let i=x.indexOf(':');return i>0?[x.slice(0,i).trim().toLowerCase(),x.slice(i+1).trim()]:null}).filter(Boolean);
+const HD={'content-type':'Media type of the response body|نوع محتوى الاستجابة','content-length':'Body size in bytes|حجم المحتوى بالبايت','content-encoding':'Compression applied to the body|الضغط المطبق على المحتوى','cache-control':'Caching rules for browsers and proxies|قواعد التخزين المؤقت للمتصفحات والوسطاء','etag':'Version identifier used for cache validation|معرّف النسخة للتحقق من الكاش','last-modified':'When the resource last changed|وقت آخر تعديل للمورد','expires':'Date after which the response is stale|تاريخ انتهاء صلاحية الاستجابة','date':'Time the response was generated|وقت إنشاء الاستجابة','server':'Server software (can disclose version info)|برنامج الخادم (قد يكشف الإصدار)','x-powered-by':'Framework/technology disclosure; consider removing|يكشف التقنية المستخدمة؛ يُفضل حذفه','set-cookie':'Sets a cookie; check Secure, HttpOnly and SameSite|يضبط ملف تعريف ارتباط؛ تحقق من Secure وHttpOnly وSameSite','location':'Redirect target URL|رابط وجهة إعادة التوجيه','vary':'Request headers that affect the cached response|ترويسات الطلب المؤثرة على الكاش','connection':'Connection handling (keep-alive / close)|إدارة الاتصال','transfer-encoding':'How the body is transferred (e.g. chunked)|طريقة نقل المحتوى','content-disposition':'Suggests inline display or download filename|يحدد العرض المباشر أو اسم الملف للتنزيل','www-authenticate':'Authentication method required by the server|طريقة المصادقة المطلوبة','access-control-allow-origin':'CORS: which origins may read the response|CORS: الأصول المسموح لها بقراءة الاستجابة','strict-transport-security':'HSTS: forces HTTPS for future visits|HSTS: يفرض HTTPS في الزيارات القادمة','content-security-policy':'CSP: restricts sources of scripts, styles and more (mitigates XSS)|CSP: يقيّد مصادر السكربتات والأنماط (يحد من XSS)','x-frame-options':'Controls framing (clickjacking protection)|يتحكم بالتضمين في إطارات (حماية من clickjacking)','x-content-type-options':'nosniff stops MIME-type sniffing|nosniff يمنع تخمين نوع MIME','referrer-policy':'Controls how much referrer info is sent|يتحكم بمعلومات المُحيل المرسلة','permissions-policy':'Restricts browser features (camera, geolocation…)|يقيّد ميزات المتصفح (الكاميرا، الموقع…)','cross-origin-opener-policy':'COOP: isolates the browsing context group|COOP: يعزل مجموعة سياق التصفح','cross-origin-resource-policy':'CORP: restricts who can load this resource|CORP: يقيّد من يمكنه تحميل المورد','via':'Proxies the response passed through|الوسطاء الذين مر بهم الطلب','age':'Seconds the response has been in a cache|ثواني بقاء الاستجابة في الكاش'};
+const SH=[['strict-transport-security',(v)=>+(/max-age=(\d+)/.exec(v)||[0,0])[1]>=15552000],['content-security-policy',v=>!/unsafe-(inline|eval)/.test(v)],['x-frame-options',(v,M)=>/deny|sameorigin/i.test(v)||/frame-ancestors/.test(M['content-security-policy']||'')],['x-content-type-options',v=>/nosniff/i.test(v)],['referrer-policy',v=>!/unsafe-url|no-referrer-when-downgrade/i.test(v)],['permissions-policy',()=>1],['cross-origin-opener-policy',()=>1],['cross-origin-resource-policy',()=>1]];
+const RT={1:'A',2:'NS',5:'CNAME',6:'SOA',15:'MX',16:'TXT',28:'AAAA',257:'CAA'};
+const dq=(n,t)=>fj('https://cloudflare-dns.com/dns-query?name='+encodeURIComponent(n)+'&type='+t,{headers:{accept:'application/dns-json'}});
+const dn=s=>{s=s.trim().replace(/^[a-z]+:\/\//i,'').split(/[\/?#:]/)[0].replace(/\.$/,'');if(!/^([\w\u00a1-\uffff-]+\.)+[a-z\u00a1-\uffff0-9-]{2,}$/i.test(s))throw new Error(m('Enter a valid domain name (e.g. example.com)','أدخل اسم نطاق صالحاً (مثل example.com)'));return new URL('http://'+s).hostname};
+const dl=r=>(r.Answer||[]).map(a=>`${a.name}  ${RT[a.type]||a.type}  TTL ${a.TTL}  ${a.data}`);
+const PORTS='20 TCP FTP Data;21 TCP FTP Control;22 TCP SSH / SFTP;23 TCP Telnet;25 TCP SMTP;53 TCP/UDP DNS;67 UDP DHCP Server;68 UDP DHCP Client;69 UDP TFTP;80 TCP HTTP;88 TCP/UDP Kerberos;110 TCP POP3;119 TCP NNTP;123 UDP NTP;135 TCP Microsoft RPC;137 UDP NetBIOS Name;139 TCP NetBIOS Session;143 TCP IMAP;161 UDP SNMP;162 UDP SNMP Trap;179 TCP BGP;389 TCP/UDP LDAP;443 TCP HTTPS;445 TCP SMB;465 TCP SMTPS;500 UDP IKE / IPsec;514 UDP Syslog;520 UDP RIP;587 TCP SMTP Submission;636 TCP LDAPS;873 TCP rsync;993 TCP IMAPS;995 TCP POP3S;1080 TCP SOCKS Proxy;1433 TCP Microsoft SQL Server;1521 TCP Oracle DB;1701 UDP L2TP;1723 TCP PPTP;1812 UDP RADIUS Auth;1813 UDP RADIUS Accounting;2049 TCP/UDP NFS;3306 TCP MySQL / MariaDB;3389 TCP RDP;4500 UDP IPsec NAT-T;5060 TCP/UDP SIP;5432 TCP PostgreSQL;5672 TCP AMQP (RabbitMQ);5900 TCP VNC;6379 TCP Redis;6443 TCP Kubernetes API;8080 TCP HTTP Alternate;8443 TCP HTTPS Alternate;9200 TCP Elasticsearch;11211 TCP/UDP Memcached;27017 TCP MongoDB'.split(';').map(x=>{let a=x.split(' ');return[a[0],a[1],a.slice(2).join(' ')]});
+const cs=f=>()=>O(f(V('i'))),wd=s=>s.replace(/([a-z\d])([A-Z])/g,'$1 $2').toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+/* ---------- the 28 tools ---------- */
+const TL=[
+{id:'json',c:0,g:'{ }',n:'JSON Formatter|منسق JSON',d:'Validate, beautify and minify JSON|تحقق من JSON وتنسيقه وضغطه',
+h:tx('i','Input JSON|مدخل JSON',9)+R(bt('f','Format|تنسيق',1),bt('mi','Minify|ضغط'),bt('v','Validate|تحقق'))+OUT,
+a:{f(){O(JSON.stringify(jp(V('i')),null,2))},mi(){O(JSON.stringify(jp(V('i'))))},v(){jp(V('i'));O(m('✓ Valid JSON','✓ JSON صالح'))}}},
+{id:'b64',c:0,g:'64',n:'Base64 Encoder / Decoder|ترميز / فك Base64',d:'Unicode-safe Base64 (Arabic supported)|ترميز Base64 يدعم يونيكود والعربية',
+h:tx('i','Text or Base64|نص أو Base64',7)+R(bt('en','Encode|ترميز',1),bt('de','Decode|فك الترميز'))+nt('Decoding accepts standard and URL-safe Base64.|يقبل فك الترميز Base64 القياسي وآمن الروابط.')+OUT,
+a:{en(){O(b64(V('i')))},de(){O(ub(V('i')))}}},
+{id:'url',c:0,g:'%20',n:'URL Encoder / Decoder|ترميز / فك الروابط',d:'Percent-encode and decode URLs and text|ترميز وفك ترميز الروابط والنصوص',
+h:tx('i','Text or URL|نص أو رابط',6)+R(bt('en','Encode component|ترميز مكوّن',1),bt('eu','Encode full URL|ترميز رابط كامل'),bt('de','Decode|فك الترميز'))+OUT,
+a:{en(){O(encodeURIComponent(V('i')))},eu(){O(encodeURI(V('i')))},de(){O(decodeURIComponent(V('i')))}}},
+{id:'html',c:0,g:'<>',n:'HTML Formatter|منسق HTML',d:'Indent and clean up HTML markup|تنسيق وترتيب شيفرة HTML',
+h:tx('i','HTML|HTML',9)+R(bt('f','Format|تنسيق',1))+OUT,
+a:{f(){O(fm(V('i'),'area base br col embed hr img input link meta source track wbr'.split(' ')))}}},
+{id:'css',c:0,g:'#',n:'CSS Formatter / Minifier|منسق وضاغط CSS',d:'Beautify or minify CSS|تنسيق أو ضغط CSS',
+h:tx('i','CSS|CSS',9)+R(bt('f','Beautify|تنسيق',1),bt('mi','Minify|ضغط'))+OUT,
+a:{f(){O(bc(V('i')))},mi(){O(cm(V('i')))}}},
+{id:'js',c:0,g:'JS',n:'JavaScript Formatter|منسق JavaScript',d:'Format JS and report syntax errors|تنسيق JS وكشف أخطاء الصياغة',
+h:tx('i','JavaScript|JavaScript',9)+R(bt('f','Format|تنسيق',1))+nt('Syntax is checked without running your code. ES modules (import/export) cannot be checked this way.|تُفحص الصياغة دون تشغيل الشيفرة. لا يمكن فحص وحدات ES (import/export) بهذه الطريقة.')+OUT,
+a:{f(){let s=V('i');try{new Function(s)}catch(e){if(!/import|export/.test(s))throw new Error(m('Syntax error: ','خطأ في الصياغة: ')+e.message)}O(fjs(s))}}},
+{id:'re',c:0,g:'.*',n:'Regex Tester|مختبر Regex',d:'Test patterns with flags and see every match|اختبر التعابير النمطية مع الأعلام',live:'run',
+h:ip('p','Pattern|النمط')+ip('fl','Flags (e.g. gi)|الأعلام (مثل gi)','g')+tx('t','Test text|نص الاختبار',6)+OUT,
+a:{run(){let p=V('p'),f=V('fl');if(!p)return O('');let r;try{r=new RegExp(p,f.includes('g')?f:f+'g')}catch(e){return X(e.message)}let a=[...V('t').matchAll(r)].slice(0,500);O(a.length?m(`${a.length} match(es)\n\n`,`عدد التطابقات: ${a.length}\n\n`)+a.map((x,i)=>`#${i+1} [${x.index}] ${JSON.stringify(x[0])}`+(x.length>1?'\n'+[...x].slice(1).map((g,j)=>`   $${j+1}: ${JSON.stringify(g)}`).join('\n'):'')+(x.groups?'\n   '+JSON.stringify(x.groups):'')).join('\n'):m('No matches','لا توجد تطابقات'))}}},
+{id:'md',c:0,g:'MD',n:'Markdown Previewer|معاينة Markdown',d:'Live, sanitized Markdown preview|معاينة مباشرة وآمنة لـ Markdown',live:'run',
+h:tx('i','Markdown|Markdown',9)+nt('All HTML is escaped and only http, https and mailto links are kept.|يتم تعطيل كل HTML ولا تُحفظ إلا روابط http وhttps وmailto.')+OUTD.replace('class=out','class="out md"'),
+a:{run(){H(md(V('i')))}}},
+{id:'pg',c:1,g:'🔑',n:'Password Generator|مولّد كلمات المرور',d:'Secure random passwords via Web Crypto|كلمات مرور عشوائية آمنة عبر Web Crypto',live:'g',
+h:`<label class=f><span data-l="Length|الطول"></span><input id=n type=range min=4 max=64 value=16><b id=nv>16</b></label>`+R(ck('u','A-Z'),ck('lo','a-z'),ck('d','0-9'),ck('s','!@#$%'),ck('am','Exclude look-alikes (O 0 I l 1)|استبعاد الأحرف المتشابهة (O 0 I l 1)',0))+R(bt('g','Generate|توليد',1))+OUT,
+a:{g(){let n=+V('n');$('#nv').textContent=n;let S=[['u','ABCDEFGHIJKLMNOPQRSTUVWXYZ'],['lo','abcdefghijklmnopqrstuvwxyz'],['d','0123456789'],['s','!@#$%^&*()-_=+[]{};:,.?/']].filter(x=>$('#'+x[0]).checked).map(x=>$('#am').checked?x[1].replace(/[O0Il1]/g,''):x[1]);if(!S.length)throw new Error(m('Select at least one character type','اختر نوع حروف واحداً على الأقل'));let all=S.join(''),c=S.map(x=>x[rn(x.length)]);while(c.length<n)c.push(all[rn(all.length)]);for(let i=c.length-1;i>0;i--){let j=rn(i+1);[c[i],c[j]]=[c[j],c[i]]}O(c.slice(0,n).join(''))}}},
+{id:'ps',c:1,g:'💪',n:'Password Strength Checker|فاحص قوة كلمة المرور',d:'Local analysis with clear feedback|تحليل محلي مع ملاحظات واضحة',live:'run',
+h:ip('i','Password|كلمة المرور','','password')+ck('sh','Show|إظهار',0)+nt('Analysis runs entirely in your browser. Nothing is sent anywhere.|يتم التحليل بالكامل داخل متصفحك ولا يُرسل شيء لأي جهة.')+`<div class=bar><i id=b></i></div>`+OUT,
+a:{run(){let p=V('i');$('#i').type=$('#sh').checked?'text':'password';let b=$('#b').style;if(!p){b.width=0;return O('')}let pool=0,ps=[26,26,10,33,100];[/[a-z]/,/[A-Z]/,/\d/,/[\x20-\x2f\x3a-\x40\x5b-\x60\x7b-\x7e]/,/[^\x00-\x7f]/].forEach((r,i)=>r.test(p)&&(pool+=ps[i]));let H=p.length*Math.log2(pool||1),fb=[];
+if(p.length<12)fb.push(m('Use at least 12 characters','استخدم 12 حرفاً على الأقل'));
+if(!/[a-z]/.test(p)||!/[A-Z]/.test(p))fb.push(m('Mix upper and lower case letters','امزج الأحرف الكبيرة والصغيرة'));
+if(!/\d/.test(p))fb.push(m('Add digits','أضف أرقاماً'));if(!/[^\w\s]/.test(p))fb.push(m('Add symbols','أضف رموزاً'));
+if(/(.)\1{2,}/.test(p)){fb.push(m('Avoid repeated characters','تجنب تكرار الحروف'));H-=10}
+if(/(abc|bcd|cde|123|234|345|456|567|678|789|qwe|wer|asd|sdf|zxc)/i.test(p)){fb.push(m('Avoid keyboard or alphabet sequences','تجنب التسلسلات الشائعة'));H-=10}
+if(/(password|passw0rd|admin|welcome|letmein|iloveyou|qwerty|123456|monkey|dragon|login)/i.test(p)){fb.push(m('Contains a very common word or pattern','تحتوي كلمة أو نمطاً شائعاً جداً'));H=Math.min(H,20)}
+H=Math.max(0,H);let lv=H<28?['Very weak|ضعيفة جداً',0]:H<36?['Weak|ضعيفة',20]:H<60?['Fair|متوسطة',45]:H<80?['Strong|قوية',75]:['Very strong|قوية جداً',100];b.width=Math.max(6,lv[1])+'%';b.background=`hsl(${lv[1]*1.2},90%,50%)`;
+O(`${m('Strength','القوة')}: ${l(lv[0])}\n${m('Estimated entropy','الإنتروبيا التقديرية')}: ${H.toFixed(0)} ${m('bits','بت')}\n${m('Length','الطول')}: ${[...p].length}`+(fb.length?'\n\n'+fb.map(x=>'• '+x).join('\n'):'\n\n✓ '+m('No obvious weaknesses found','لا توجد نقاط ضعف واضحة')))}}},
+{id:'hs',c:1,g:'#️',n:'Hash Generator|مولّد الهاش',d:'SHA-1, SHA-256, SHA-384, SHA-512|SHA-1 وSHA-256 وSHA-384 وSHA-512',live:'run',
+h:tx('i','Text|النص',6)+OUT,
+a:{async run(){if(!(window.crypto&&crypto.subtle))throw new Error(m('Web Crypto is not available in this browser or context','Web Crypto غير متاح في هذا المتصفح أو السياق'));let d=u8(V('i')),r=[];for(let a of['SHA-1','SHA-256','SHA-384','SHA-512'])r.push(a+':\n'+[...new Uint8Array(await crypto.subtle.digest(a,d))].map(b=>b.toString(16).padStart(2,'0')).join(''));O(r.join('\n\n'))}}},
+{id:'jwt',c:1,g:'JWT',n:'JWT Decoder|فك JWT',d:'Decode header and payload (no verification)|فك الترويسة والحمولة (دون تحقق)',live:'run',
+h:tx('i','JWT|JWT',4)+nt('⚠ Decoding does NOT verify the signature. Never trust a token\'s contents until its signature is verified on a server.|⚠ فك الترميز لا يتحقق من التوقيع. لا تثق بمحتوى الرمز قبل التحقق من توقيعه في الخادم.')+OUT,
+a:{run(){let s=V('i').trim();if(!s)return O('');let p=s.split('.');if(p.length<2||p.length>3)throw new Error(m('A JWT has 2–3 dot-separated parts','يتكون JWT من 2-3 أجزاء مفصولة بنقاط'));let h=JSON.parse(ub(p[0])),b=JSON.parse(ub(p[1])),x='';['exp','iat','nbf'].forEach(k=>typeof b[k]=='number'&&(x+=`${k}: ${new Date(b[k]*1e3).toISOString()}${k=='exp'&&b[k]*1e3<Date.now()?' '+m('(expired)','(منتهي)'):''}\n`));O('HEADER\n'+JSON.stringify(h,null,2)+'\n\nPAYLOAD\n'+JSON.stringify(b,null,2)+'\n\n'+x+'\nSIGNATURE ('+m('not verified','غير متحقق منه')+')\n'+(p[2]||m('(none)','(لا يوجد)')))}}},
+{id:'hid',c:1,g:'?#',n:'Hash Identifier|كاشف نوع الهاش',d:'Guess hash type by length and format|تخمين نوع الهاش من الطول والصيغة',live:'run',
+h:tx('i','Hash|الهاش',3)+nt('Identification is a heuristic guess based on length and format; it is not guaranteed.|التعرف تخمين مبني على الطول والصيغة وليس مضموناً.')+OUT,
+a:{run(){let s=V('i').trim();if(!s)return O('');let r=[],P=[[/^\$2[abxy]?\$\d\d\$[./A-Za-z0-9]{53}$/,'bcrypt'],[/^\$argon2(id|i|d)\$/,'Argon2'],[/^\$1\$/,'MD5-crypt'],[/^\$5\$/,'SHA-256-crypt'],[/^\$6\$/,'SHA-512-crypt'],[/^\$apr1\$/,'Apache APR1-MD5'],[/^\*[A-F0-9]{40}$/i,'MySQL 4.1+'],[/^pbkdf2/i,'PBKDF2']],hx=/^[a-f0-9]+$/i.test(s),T={8:'CRC32 / Adler-32',16:'MySQL (old) / half-MD5',32:'MD5 / NTLM / MD4',40:'SHA-1 / RIPEMD-160',56:'SHA-224 / SHA3-224',64:'SHA-256 / SHA3-256 / BLAKE2s',96:'SHA-384 / SHA3-384',128:'SHA-512 / SHA3-512 / Whirlpool / BLAKE2b'};P.forEach(x=>x[0].test(s)&&r.push(x[1]));if(hx&&T[s.length])r.push(T[s.length]);O(r.length?m('Possible types:','الأنواع المحتملة:')+'\n• '+r.join('\n• ')+`\n\n(${s.length} ${m('chars','حرف')}${hx?', hex':''})`:m('No known format matched.','لا يوجد تنسيق معروف مطابق.'))}}},
+{id:'hh',c:1,g:'HTTP',n:'HTTP Header Analyzer|محلل ترويسات HTTP',d:'Explain pasted response headers|شرح ترويسات الاستجابة الملصقة',live:'run',
+h:tx('i','Paste response headers|الصق ترويسات الاستجابة',8)+OUT,
+a:{run(){let a=ph(V('i'));if(!a.length)return O('');O(a.map(([k,v])=>`${k}: ${v}\n   ↳ ${HD[k]?l(HD[k]):m('No built-in explanation','لا يوجد شرح مدمج')}`).join('\n\n'))}}},
+{id:'sh',c:1,g:'🛡H',n:'Security Headers Checker|فاحص ترويسات الأمان',d:'Grade security headers from pasted data|تقييم ترويسات الأمان من بيانات ملصقة',live:'run',
+h:tx('i','Paste response headers|الصق ترويسات الاستجابة',8)+nt('Pages on other sites cannot be fetched from a browser (CORS blocks reading their headers), so this tool analyzes headers you paste, e.g. from "curl -I https://example.com".|لا يمكن للمتصفح قراءة ترويسات مواقع أخرى (CORS)، لذا تحلل الأداة الترويسات التي تلصقها، مثل ناتج curl -I.')+OUT,
+a:{run(){let a=ph(V('i'));if(!a.length)return O('');let M={};a.forEach(([k,v])=>M[k]=v);let ok=0,o=SH.map(([k,t])=>{let v=M[k],g=v!=null&&t(v,M);if(g)ok++;return`${v==null?'✗':g?'✓':'⚠'} ${k}${v==null?'  ('+m('missing','مفقود')+')':g?'':'  ('+m('weak','ضعيف')+')'}\n   ${l(HD[k])}`});['server','x-powered-by'].forEach(k=>/\d/.test(M[k]||'')&&o.push(`⚠ ${k}: ${M[k]}\n   ${m('Discloses software version','يكشف إصدار البرنامج')}`));O(`${m('Score','النتيجة')}: ${ok}/${SH.length}\n\n`+o.join('\n\n'))}}},
+{id:'us',c:1,g:'🔗!',n:'URL Safety Checker|فاحص أمان الرابط',d:'Spot suspicious URL patterns|كشف أنماط الروابط المشبوهة',live:'run',
+h:ip('i','URL|الرابط')+nt('Heuristic checks only: they can flag common red flags but can never prove a URL is safe.|فحص إرشادي فقط: يكشف علامات الخطر الشائعة لكنه لا يضمن أمان الرابط.')+OUT,
+a:{run(){let s=V('i').trim();if(!s)return O('');if(!/^[a-z][a-z0-9+.-]*:\/\//i.test(s))s='http://'+s;let u;try{u=new URL(s)}catch(e){throw new Error(m('Not a valid URL','رابط غير صالح'))}let h=u.hostname,f=[],a=(n,t)=>f.push([n,t]);
+if(u.protocol!='https:')a(1,'Not using HTTPS|لا يستخدم HTTPS');
+if(/^\d+\.\d+\.\d+\.\d+$/.test(h)||h.includes(':'))a(2,'Host is a raw IP address|المضيف عنوان IP مباشر');
+if(/xn--/.test(h))a(2,'Punycode host (possible look-alike characters)|نطاق Punycode (قد يخفي أحرفاً مشابهة)');
+if(u.username||u.password)a(2,'Contains user info (@) that can disguise the real host|يحتوي معلومات مستخدم (@) قد تُخفي المضيف الحقيقي');
+if(h.split('.').length>4)a(1,'Many subdomains|عدد كبير من النطاقات الفرعية');
+if((h.match(/-/g)||[]).length>=3)a(1,'Many hyphens in host|شرطات كثيرة في المضيف');
+if(/\.(zip|mov|tk|ml|ga|cf|gq|top|xyz|click|work|country)$/.test(h))a(1,'Top-level domain often abused|امتداد نطاق يُساء استخدامه كثيراً');
+if(/(^|\.)(bit\.ly|tinyurl\.com|t\.co|goo\.gl|is\.gd|ow\.ly|cutt\.ly|rb\.gy)$/.test(h))a(1,'URL shortener hides the destination|مختصر روابط يخفي الوجهة');
+if(/(login|signin|verify|secure|account|update|bank|wallet|password|confirm|paypal)/i.test(h+u.pathname))a(1,'Contains sensitive-action keywords|يحتوي كلمات متعلقة بالحسابات الحساسة');
+if(u.port&&!['80','443'].includes(u.port))a(1,'Non-standard port|منفذ غير قياسي');
+if(s.length>120)a(1,'Very long URL|رابط طويل جداً');
+if((s.match(/%[0-9a-f]{2}/gi)||[]).length>5)a(1,'Heavy percent-encoding|ترميز نسبة مئوية كثيف');
+let sc=f.reduce((x,y)=>x+y[0],0);O(`${m('Protocol','البروتوكول')}: ${u.protocol}\n${m('Host','المضيف')}: ${h}\n${m('Path','المسار')}: ${u.pathname}\n${m('Query','الاستعلام')}: ${u.search||'-'}\n\n`+(sc==0?'✓ '+m('No suspicious patterns found','لم يتم العثور على أنماط مشبوهة'):(sc<3?'⚠ '+m('Some suspicious patterns','بعض الأنماط المشبوهة'):'✗ '+m('Several suspicious patterns','أنماط مشبوهة متعددة'))+'\n\n'+f.map(x=>'• '+l(x[1])).join('\n')))}}},
+{id:'ip',c:2,g:'IP',n:'IP Information|معلومات IP',d:'Public IP details (external service)|تفاصيل عنوان IP العام (خدمة خارجية)',
+h:ip('i','IP address (empty = your own)|عنوان IP (فارغ = عنوانك)')+nt('Uses the external service ipwho.is. The IP you enter, or your own, is sent to it.|تستخدم الخدمة الخارجية ipwho.is ويُرسل إليها عنوان IP الذي تدخله أو عنوانك.')+R(bt('go','Look up|بحث',1))+OUT,
+a:{async go(){O(m('Loading…','جارٍ التحميل…'));let r=await fj('https://ipwho.is/'+encodeURIComponent(V('i').trim()));if(r.success===false)throw new Error(r.message||m('Lookup failed','فشل البحث'));let c=r.connection||{};O([['IP','IP',r.ip],['Type','النوع',r.type],['Country','الدولة',r.country&&r.country+' ('+r.country_code+')'],['Region','المنطقة',r.region],['City','المدينة',r.city],['Lat/Lon','الإحداثيات',r.latitude+', '+r.longitude],['ISP','المزود',c.isp],['Organization','المنظمة',c.org],['ASN','ASN',c.asn],['Timezone','المنطقة الزمنية',r.timezone&&r.timezone.id]].filter(x=>x[2]).map(x=>m(x[0],x[1])+': '+x[2]).join('\n'))}}},
+{id:'dns',c:2,g:'DNS',n:'DNS Lookup|استعلام DNS',d:'Query DNS records over HTTPS|استعلام سجلات DNS عبر HTTPS',
+h:ip('i','Domain|النطاق','example.com')+sl('t','Record type|نوع السجل',['A','AAAA','MX','TXT','NS','CNAME','SOA','CAA'].map(x=>[x,x]))+nt('Uses the external Cloudflare DNS-over-HTTPS service (cloudflare-dns.com).|تستخدم خدمة Cloudflare DNS-over-HTTPS الخارجية.')+R(bt('go','Look up|بحث',1))+OUT,
+a:{async go(){let d=dn(V('i'));O(m('Loading…','جارٍ التحميل…'));let r=await dq(d,V('t')),a=dl(r);O(`${m('Status','الحالة')}: ${({0:'NOERROR',2:'SERVFAIL',3:'NXDOMAIN'})[r.Status]||r.Status}\n\n`+(a.length?a.join('\n'):m('No records found','لا توجد سجلات')))}}},
+{id:'dom',c:2,g:'🌍',n:'Domain Information|معلومات النطاق',d:'DNS-based domain overview|نظرة عامة على النطاق من سجلات DNS',
+h:ip('i','Domain|النطاق','example.com')+nt('This shows DNS data only (via Cloudflare DNS-over-HTTPS). It is NOT domain registration (WHOIS) data such as owner or expiry date.|يعرض هذا بيانات DNS فقط (عبر Cloudflare) وليس بيانات تسجيل النطاق (WHOIS) مثل المالك وتاريخ الانتهاء.')+R(bt('go','Look up|بحث',1))+OUT,
+a:{async go(){let d=dn(V('i'));O(m('Loading…','جارٍ التحميل…'));let T=['A','AAAA','NS','MX','TXT','SOA','CAA'],rs=await Promise.all(T.map(t=>dq(d,t)));if(rs[0].Status==3)return O(`${d}\n✗ ${m('Domain does not exist (NXDOMAIN)','النطاق غير موجود (NXDOMAIN)')}`);O(d+'\n\n'+rs.map((r,i)=>{let a=dl(r);return`[${T[i]}] ${a.length} ${m('record(s)','سجل')}`+(a.length?'\n'+a.map(x=>'  '+x).join('\n'):'')}).join('\n\n'))}}},
+{id:'sub',c:2,g:'/24',n:'IPv4 Subnet Calculator|حاسبة الشبكات الفرعية IPv4',d:'Mask, network, broadcast and hosts|القناع والشبكة والبث وعدد المضيفين',live:'go',
+h:ip('i','IPv4 address|عنوان IPv4','192.168.1.10')+ip('c','CIDR prefix (0–32)|البادئة CIDR (0–32)','24','number')+OUT,
+a:{go(){let v=V('i').trim(),c=V('c').trim();if(v.includes('/'))[v,c]=v.split('/');let o=v.split('.');if(o.length!=4||!o.every(x=>/^\d{1,3}$/.test(x)&&+x<256))throw new Error(m('Invalid IPv4 address','عنوان IPv4 غير صالح'));if(!/^\d{1,2}$/.test(c)||+c>32)throw new Error(m('CIDR prefix must be 0–32','يجب أن تكون البادئة بين 0 و32'));let p=+c,ip=o.reduce((a,x)=>a*256+ +x,0),mk=p?(0xFFFFFFFF<<(32-p))>>>0:0,nw=(ip&mk)>>>0,bc=(nw|~mk)>>>0,ds=n=>[n>>>24,n>>>16&255,n>>>8&255,n&255].join('.');O([[m('Address','العنوان'),ds(ip)+'/'+p],[m('Subnet mask','قناع الشبكة'),ds(mk)],[m('Wildcard mask','القناع العكسي'),ds(~mk>>>0)],[m('Network address','عنوان الشبكة'),ds(nw)],[m('Broadcast address','عنوان البث'),ds(bc)],[m('First host','أول مضيف'),ds(p>=31?nw:nw+1)],[m('Last host','آخر مضيف'),ds(p>=31?bc:bc-1)],[m('Total addresses','إجمالي العناوين'),2**(32-p)],[m('Usable hosts','المضيفون المتاحون'),p==32?1:p==31?2:2**(32-p)-2]].map(x=>x[0]+': '+x[1]).join('\n'))}}},
+{id:'mac',c:2,g:'MAC',n:'MAC Address Formatter|منسق عناوين MAC',d:'Validate and convert MAC formats|تحقق وحوّل بين صيغ MAC',live:'run',
+h:ip('i','MAC address|عنوان MAC','00:1A:2B:3C:4D:5E')+OUT,
+a:{run(){let s=V('i').trim();if(!s)return O('');let h=s.replace(/[:\-.\s]/g,'');if(!/^[0-9a-f]{12}$/i.test(h))throw new Error(m('Invalid MAC: expected 12 hex digits (e.g. 00:1A:2B:3C:4D:5E)','عنوان MAC غير صالح: المطلوب 12 رقماً سداسي عشري'));let U=h.toUpperCase(),lo=h.toLowerCase(),sp=(x,d)=>x.match(/../g).join(d),f=parseInt(h.slice(0,2),16);O([`${m('Colon','نقطتان')}: ${sp(U,':')}`,`${m('Hyphen','شرطة')}: ${sp(U,'-')}`,`Cisco: ${lo.match(/..../g).join('.')}`,`${m('No separator','بدون فاصل')}: ${U}`,`${m('Lowercase','أحرف صغيرة')}: ${sp(lo,':')}`,'',f&1?'Multicast':'Unicast',f&2?m('Locally administered','إدارة محلية'):m('Universally administered (OUI)','إدارة عالمية (OUI)')].join('\n'))}}},
+{id:'port',c:2,g:':80',n:'Port Reference Guide|دليل المنافذ',d:'Common TCP/UDP ports and services|المنافذ والخدمات الشائعة TCP/UDP',live:'run',
+h:ip('i','Search port or service|ابحث عن منفذ أو خدمة')+nt('A reference list only. This tool does not scan any ports.|قائمة مرجعية فقط، ولا تقوم الأداة بفحص أي منفذ.')+OUTD,
+a:{run(){let s=V('i').trim().toLowerCase(),a=PORTS.filter(x=>!s||x.join(' ').toLowerCase().includes(s));H(a.length?`<table><tr><th data-l="Port|المنفذ"></th><th data-l="Protocol|البروتوكول"></th><th data-l="Service|الخدمة"></th></tr>${a.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td><td>${esc(x[2])}</td></tr>`).join('')}</table>`:`<span data-l="No matching ports|لا توجد منافذ مطابقة"></span>`)}}},
+{id:'j2c',c:3,g:'J→C',n:'JSON to CSV|JSON إلى CSV',d:'Array of objects to CSV|تحويل مصفوفة كائنات إلى CSV',
+h:tx('i','JSON array of objects|مصفوفة JSON من الكائنات',8)+R(bt('go','Convert|تحويل',1))+OUT,
+a:{go(){let d=jp(V('i'));if(!Array.isArray(d))d=[d];if(!d.length||d.some(x=>x===null||typeof x!='object'||Array.isArray(x)))throw new Error(m('Expected an array of objects','المتوقع مصفوفة من الكائنات'));let k=[...new Set(d.flatMap(x=>Object.keys(x)))],q=v=>{v=v==null?'':typeof v=='object'?JSON.stringify(v):String(v);return /[",\n\r]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v};O([k.map(q).join(','),...d.map(r=>k.map(c=>q(r[c])).join(','))].join('\n'))}}},
+{id:'c2j',c:3,g:'C→J',n:'CSV to JSON|CSV إلى JSON',d:'CSV with quotes to JSON|تحويل CSV مع الاقتباس إلى JSON',
+h:tx('i','CSV|CSV',8)+R(sl('dl','Delimiter|الفاصل',[[',','Comma|فاصلة'],[';','Semicolon|فاصلة منقوطة'],['&#9;','Tab|جدولة']]),ck('hd','First row is header|الصف الأول عناوين'),ck('ty','Detect numbers/booleans|اكتشاف الأرقام والقيم المنطقية',0),bt('go','Convert|تحويل',1))+OUT,
+a:{go(){let r=pc(V('i'),V('dl')),ty=$('#ty').checked,cv=x=>ty?(/^-?\d+(\.\d+)?$/.test(x)?+x:x=='true'?true:x=='false'?false:x):x;if(!r.length)throw new Error(m('No CSV data','لا توجد بيانات CSV'));if($('#hd').checked){let h=r[0].map((x,i)=>x||'col'+(i+1));O(JSON.stringify(r.slice(1).map(w=>Object.fromEntries(h.map((k,i)=>[k,i<w.length?cv(w[i]):'']))),null,2))}else O(JSON.stringify(r.map(w=>w.map(cv)),null,2))}}},
+{id:'xml',c:3,g:'XML',n:'XML Formatter|منسق XML',d:'Validate and format XML|التحقق من XML وتنسيقه',
+h:tx('i','XML|XML',9)+R(bt('f','Format|تنسيق',1),bt('v','Validate|تحقق'))+OUT,
+a:{f(){this.v(1);O(fm(V('i'),[]))},v(q){let d=new DOMParser().parseFromString(V('i').trim(),'application/xml'),e=d.querySelector('parsererror');if(e)throw new Error(m('Invalid XML: ','XML غير صالح: ')+e.textContent.trim().slice(0,300));if(!q)O(m('✓ Well-formed XML','✓ XML سليم'))}}},
+{id:'diff',c:3,g:'±',n:'Text Diff|مقارنة النصوص',d:'Line-by-line differences|الفروقات سطراً بسطر',
+h:`<div class=two>${tx('i','Original|الأصلي',8)}${tx('j','Modified|المعدّل',8)}</div>`+R(bt('go','Compare|مقارنة',1))+OUTD,
+a:{go(){let a=V('i').split('\n'),b=V('j').split('\n');if(a.length>2000||b.length>2000)throw new Error(m('Limit: 2000 lines per side','الحد: 2000 سطر لكل جانب'));let r=df(a,b),c=x=>r.filter(y=>y[0]==x).length;H(`<div>+${c('+')} &nbsp; −${c('-')} &nbsp; =${c(' ')}</div>`+r.map(x=>`<div class="ln ${x[0]=='+'?'a':x[0]=='-'?'d':''}">${x[0]} ${esc(x[1])}</div>`).join(''))}}},
+{id:'case',c:3,g:'Aa',n:'Case Converter|محول حالة الأحرف',d:'Upper, lower, title, sentence and more|كبيرة وصغيرة وعنوان وجملة وغيرها',
+h:tx('i','Text|النص',6)+R(bt('up','UPPERCASE|أحرف كبيرة',1),bt('lo','lowercase|أحرف صغيرة'),bt('ti','Title Case|عنوان'),bt('se','Sentence case|جملة'),bt('ca','camelCase|camelCase'),bt('sn','snake_case|snake_case'),bt('ke','kebab-case|kebab-case'))+nt('Arabic has no letter case, so Arabic text is left unchanged.|العربية لا تحتوي حالة أحرف لذا يبقى النص العربي كما هو.')+OUT,
+a:{up:cs(s=>s.toUpperCase()),lo:cs(s=>s.toLowerCase()),ti:cs(s=>s.toLowerCase().replace(/(^|[\s\-_("])(\p{L})/gu,(_,a,b)=>a+b.toUpperCase())),se:cs(s=>s.toLowerCase().replace(/(^\s*|[.!?؟]\s+)(\p{L})/gu,(_,a,b)=>a+b.toUpperCase())),ca:cs(s=>wd(s).map((x,i)=>i?x[0].toUpperCase()+x.slice(1):x).join('')),sn:cs(s=>wd(s).join('_')),ke:cs(s=>wd(s).join('-'))}},
+{id:'wc',c:3,g:'123',n:'Word Counter|عدّاد الكلمات',d:'Words, characters and lines — live|الكلمات والأحرف والأسطر مباشرة',live:'run',
+h:tx('i','Text|النص',10)+OUTD.replace('class=out','class="out stats"'),
+cp:()=>$$('.stt').map(x=>x.lastChild.textContent+': '+x.firstChild.textContent).join('\n'),
+a:{run(){let s=V('i'),w=(s.trim().match(/\S+/g)||[]).length,se=(s.match(/[^.!?؟\n]+[.!?؟]*/g)||[]).filter(x=>x.trim()).length;H([['Words|الكلمات',w],['Characters|الأحرف',[...s].length],['Characters (no spaces)|الأحرف (بدون مسافات)',[...s.replace(/\s/g,'')].length],['Lines|الأسطر',s?s.split(/\r?\n/).length:0],['Sentences|الجمل',se],['Reading time (min)|زمن القراءة (دقيقة)',Math.ceil(w/200)]].map(x=>`<div class=stt><b>${x[1]}</b><span data-l="${x[0]}"></span></div>`).join(''))}}}
+];
+/* ---------- app shell ---------- */
+async function run(n){let f=cur&&cur.a[n];if(!f)return;try{await f.call(cur.a)}catch(x){X(x.message||String(x))}}
+function nav(){let it=(v,t,ic,n)=>`<button class="nv${String(view)==String(v)&&!cur&&!q?' on':''}" data-v="${v}"><span aria-hidden=true>${ic}</span><span>${l(t)}</span><em>${n}</em></button>`;
+$('#nav').innerHTML=it('all','All Tools|كل الأدوات','▦',TL.length)+it('rec','Recent|المستخدمة مؤخراً','◷',rec.length)+'<hr>'+CAT.map((c,i)=>it(i,c,CI[i],TL.filter(x=>x.c==i).length)).join('')}
+const card=t=>`<div class="gl cd"><button class=cdb data-o="${t.id}"><span class=ic>${esc(t.g)}</span><b>${l(t.n)}</b><small>${l(t.d)}</small></button></div>`;
+function grid(){let s=q.trim().toLowerCase(),a=TL.filter(t=>s?(t.n+t.d+t.id).toLowerCase().includes(s):view=='rec'?rec.includes(t.id):view=='all'||t.c==view);if(view=='rec'&&!s)a.sort((x,y)=>rec.indexOf(x.id)-rec.indexOf(y.id));res=a;
+let tt=s?'Search results|نتائج البحث':view=='all'?'All Tools|كل الأدوات':view=='rec'?'Recent|المستخدمة مؤخراً':CAT[view],em=s?'No tools match your search.|لا توجد أدوات مطابقة لبحثك.':'No recently used tools yet.|لم تستخدم أي أداة بعد.';
+$('#vw').innerHTML=(view=='all'&&!s?`<div class="gl hero"><h1>YC Tools — All in One</h1><p>${TL.length} ${m('professional tools for developers, security and network work — fast, private and local.','أداة احترافية للمطورين والأمن والشبكات — سريعة وخاصة وتعمل محلياً.')}</p></div>`:'')+`<h2 data-l="${tt}"></h2>`+(a.length?`<div class=grid>${a.map(card).join('')}</div>`:`<div class="gl em"><span>⌕</span><p data-l="${em}"></p></div>`)}
+function wsHead(){$('#wt').textContent=l(cur.n);$('#wd').textContent=l(cur.d)}
+function open(id,keep){cur=TL.find(x=>x.id==id);if(!keep){rec=[id,...rec.filter(x=>x!=id)].slice(0,8);save()}
+$('#vw').innerHTML=`<div class=wh><button class=b data-a=back aria-label="${m('Back','رجوع')}">${lang=='ar'?'→':'←'}</button><div><h1 id=wt></h1><p id=wd class=mu></p></div>${bt('copy','Copy|نسخ',1)}${bt('clr','Clear|مسح')}</div><div class="gl ws" id=wk>${cur.h}</div>`;
+let t=cur;$('#wk').addEventListener('input',()=>t.live&&run(t.live));wsHead();nav();apply();if(t.live)run(t.live);scrollTo(0,0)}
+function draw(){nav();if(cur)wsHead();else grid();apply()}
+async function cp(){let o=$('#o');if(!o)return;let t=cur.cp?cur.cp():o.innerText.trim();if(!t)return toast(m('Nothing to copy','لا يوجد ما يُنسخ'),1);let ok=1;try{await navigator.clipboard.writeText(t)}catch(e){let a=document.createElement('textarea');a.value=t;document.body.append(a);a.select();try{ok=document.execCommand('copy')}catch(e2){ok=0}a.remove()}toast(ok?m('Copied ✓','تم النسخ ✓'):m('Copy failed','تعذر النسخ'),!ok)}
+function setLang(){document.documentElement.lang=lang;document.documentElement.dir=lang=='ar'?'rtl':'ltr';save();draw()}
+document.addEventListener('click',e=>{let t=e.target.closest('[data-o],[data-v],[data-a]');if(!t)return;let d=t.dataset;
+if(d.o)open(d.o)
+else if(d.v){view=d.v;cur=null;q='';$('#q').value='';draw();$('#sb').classList.remove('on')}
+else if(d.a=='back'){cur=null;draw()}
+else if(d.a=='copy')cp()
+else if(d.a=='clr')open(cur.id,1)
+else run(d.a)});
+$('#lang').onclick=()=>{lang=lang=='ar'?'en':'ar';setLang()};
+$('#mn').onclick=()=>$('#sb').classList.toggle('on');
+$('#q').addEventListener('input',e=>{q=e.target.value;cur=null;draw()});
+$('#q').addEventListener('keydown',e=>{if(e.key=='Enter'&&res[0])open(res[0].id)});
+document.addEventListener('keydown',e=>{if(e.key=='/'&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){e.preventDefault();$('#q').focus()}if(e.key=='Escape')$('#sb').classList.remove('on')});
+setLang();
+</script></body></html>
